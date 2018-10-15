@@ -4,6 +4,10 @@ Rails.application.configure do
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
+  
+  # Set up the default URL options for the Devise mailer 
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
   config.cache_classes = false
 
   # Do not eager load code on boot.
@@ -11,6 +15,8 @@ Rails.application.configure do
 
   # Show full error reports.
   config.consider_all_requests_local = true
+  
+  config.read_encrypted_secrets = true
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
