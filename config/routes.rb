@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   
 
   devise_scope :user do
-     root to: "home#home"
+     root to: "static#home"
      get    "login",  to: "devise/sessions#new",         as: :new_user_session
      post   "login",  to: "devise/sessions#create",      as: :user_session
      delete "logout", to: "devise/sessions#destroy",     as: :destroy_user_session
