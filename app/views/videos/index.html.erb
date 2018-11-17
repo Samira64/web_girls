@@ -1,0 +1,23 @@
+<%= link_to "Create video", new_series_video_url(@series) %><br><br> 
+
+<h1>Videos list</h1>
+<table class="table table-bordered">
+    <% @videos.each do |video| %>
+    <tr>
+        <td><%= video.title %></td>
+        <td><%= video.description %></td>
+        <td><%= video.view_count %></td>
+        <td>
+            <%= link_to [@series,video], :method => :delete,data: {confirm: "are your sure?"} do %>
+              <%= octicon "trashcan", :height => 32,  :class => "right left", :"aria-label" => "hi" %>
+            <% end %>
+        </td>  
+        <td>
+            <%= link_to "Edit", edit_series_video_url(@series,video) %>
+        </td>  
+        <td>
+            <%= link_to "View", series_video_url(@series,video) %>
+        </td>  
+    </tr>
+    <% end %>
+</table>
