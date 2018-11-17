@@ -48,16 +48,16 @@ ActiveRecord::Schema.define(version: 2018_11_03_095721) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "videoes", force: :cascade do |t|
+  create_table "videos", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.string "URL"
     t.integer "view_count"
-    t.bigint "serie_id"
+    t.bigint "series_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["serie_id"], name: "index_videoes_on_serie_id"
+    t.index ["series_id"], name: "index_videos_on_series_id"
   end
 
-  add_foreign_key "videoes", "series", column: "serie_id"
+  add_foreign_key "videos", "series"
 end
