@@ -1,0 +1,31 @@
+<h1>All series</h1>
+
+    <table class="table table-bordered text-center">
+        <% @series.each do |series| %>
+        <tr>
+            <td>
+               <%= series.id %>
+               </td>
+               <td>
+                <%= series.title %>
+            </td>
+            <td>
+                <%= link_to series, :method => :delete,data: {confirm: "are your sure?"} do %>
+                    <%= octicon "trashcan", :height => 32,  :class => "right left", :"aria-label" => "hi" %>
+                <% end %>
+            </td>  
+            <td>
+                <%= link_to "Edit", edit_series_url(series) %>
+                </td>  
+                <td>
+                <%= link_to "View", series_url(series) %>
+                </td>  
+                <td>
+                <%= link_to series.videos.count, series_videos_url(series) %>
+                </td>   
+        </tr>
+        <% end %>
+    </table>
+
+
+

@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-md-6 column">
+
+    <h2>Edit series</h2>
+    <%= form_for @series, url: series_path , method: 'patch' do |f| %>
+      <div class="form-group">
+        <%= f.label :title %><br />
+        <%= f.text_field :title, autofocus: true, autocomplete: "title", class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :level %><br />
+        <%= f.text_field :level, autocomplete: "current-level", class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :description %><br />
+        <%= f.text_area :description, autocomplete: "current-level", class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-6 col-sm-offset-3">
+            <%= f.submit "Edit serie", class: "form-control btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    <% end %><br>
+
+  </div>
+</div>
