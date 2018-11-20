@@ -13,7 +13,7 @@ Rails.application.routes.draw do
    post   "sign-up",  to: "devise/registrations#create", as: :user_registration
 end
 
-  get "admin", to: "admin/admin#index"
+  get "admin", to: "admin#index"
 
   scope "/admin" do
     resources :series do
