@@ -1,20 +1,22 @@
 class SeriesController < ApplicationController
+    
     def index
         @series = Series.all
     end
 
     def show
-        @serie = Series.find(params[:id])
+        @series = Series.find(params[:id])
+        redirect_to series_videos_url(@series)
     end
 
     def new
-        @serie = Series.new
+        @series = Series.new
     end
 
     def create
-        @serie = Series.new(serie_params)
-        if @serie.save
-            redirect_to series_url(@serie), notice: "The serie  \"#{@serie.title}\"  was built successfully."
+        @series = Series.new(serie_params)
+        if @series.save
+            redirect_to series_url(@series), notice: "The serie  \"#{@series.title}\"  was built successfully."
         else
             render "new"
         end
@@ -48,6 +50,5 @@ class SeriesController < ApplicationController
     def serie_params
         params.require(:series).permit(:title, :description, :level)
     end
-
 
 end
