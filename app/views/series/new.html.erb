@@ -1,8 +1,10 @@
+<%= render 'partials/errors', model: @series %>
+
 <div class="row">
   <div class="col-md-6 column">
 
     <h2>create serie</h2>
-    <%= form_for @serie, url: '/admin/series', method: 'post' do |f| %>
+    <%= form_for @series, url: '/admin/series', method: 'post' do |f| %>
       <div class="form-group">
         <%= f.label :title %><br />
         <%= f.text_field :title, autofocus: true, autocomplete: "title", class: 'form-control' %>
