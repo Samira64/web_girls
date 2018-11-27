@@ -1,11 +1,12 @@
 <h1>All series</h1>
+<%= link_to "Create series", new_series_url %><br><br>
 
 <table class="table table-bordered text-center">
     <thead>
         <tr>
             <th>ID</th>
             <th>Title</th>
-            <th></th>
+            <th>view_count</th>
             <th></th>
             <th></th>
             <th></th>
@@ -21,19 +22,20 @@
                 <%= series.title %>
             </td>
             <td>
-                <%= link_to series, :method => :delete, data: {confirm: "are your sure?"} do %>
-                <%= octicon("trashcan", :height => 32,  :class => "right left", :"aria-label" => "hi") %>
-                <% end %>
-            </td>         
+                <%=  series.videos.count %>
+            </td>       
             <td>
                 <%= link_to "Edit", edit_series_url(series) %>
             </td>  
             <td>
                 <%= link_to "View", series_videos_url(series) %>
-            </td>  
+            </td> 
             <td>
-                <%=  series.videos.count %>
-            </td>   
+                <%= link_to series, :method => :delete, data: {confirm: "are your sure?"} do %>
+                <%= octicon("trashcan", :height => 32,  :class => "right left", :"aria-label" => "hi") %>
+                <% end %>
+            </td>  
+              
        </tr>
    <% end %>
 </table>
