@@ -11,14 +11,21 @@ Rails.application.routes.draw do
 
    get    "sign-up",  to: "devise/registrations#new",    as: :new_user_registration
    post   "sign-up",  to: "devise/registrations#create", as: :user_registration
-end
 
-  get "admin", to: "admin#index"
+end
 
   scope "/admin" do
     resources :series do
         resources :videos
     end
+  end
+
+  get "admin", to: "admin#index"
+
+  scope module: :users do
+    get "/series", to: "series#index"
+    get "/series/:id", to: "series#show", as: :user_series
+    get "/watch/:id", to: "videos#show", as: :user_video
   end
 
 end
