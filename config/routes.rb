@@ -23,7 +23,7 @@ end
   get "admin", to: "admin#index"
 
   scope module: :users do
-    get "/series", to: "series#index"
+    get "/series", to: "series#index", as: :user_series_index
     get "/series/:id", to: "series#show", as: :user_series
     get "/watch/:id", to: "videos#show", as: :user_video
   end
