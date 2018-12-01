@@ -1,0 +1,34 @@
+<h1>All series</h1>
+
+
+<table class="table table-bordered text-center">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>view_count</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <% @series.each do |series| %>
+        <tr>
+            <td>
+                 <%= series.id %>
+            </td>
+            <td>
+                <%= series.title %>
+            </td>
+            <td>
+                <%=  series.videos.count %>
+            </td>        
+            <td>
+                <%= link_to "View", user_series_url(series) %>
+            </td> 
+              
+       </tr>
+   <% end %>
+</table>
+
+
+

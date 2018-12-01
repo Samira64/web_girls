@@ -1,0 +1,22 @@
+<table class="table table-bordered text-center">
+    <caption>List of videos for <%= @series.title %></caption>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th></th>
+        </tr>
+    </thead>
+    
+    <% @videos.each do |video| %>
+        <tbody>
+            <tr>
+                <td><%= video.title %></td>
+                <td><%= video.description %></td>
+                <td>
+                    <%= link_to "View", user_video_url(video), id: "my-link" %>
+                </td>                
+            </tr>
+        </tbody>
+    <% end %>
+</table>
