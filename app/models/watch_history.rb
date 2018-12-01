@@ -1,0 +1,3 @@
+class WatchHistory < ApplicationRecord
+
+end

@@ -59,12 +59,14 @@ ActiveRecord::Schema.define(version: 2018_11_27_092456) do
     t.index ["series_id"], name: "index_videos_on_series_id"
   end
 
-  create_table "watching_histories", id: false, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "video_id"
+  create_table "watch_histories", force: :cascade do |t|
     t.datetime "last_watched_at"
-    t.index ["user_id", "video_id"], name: "index_watching_histories_on_user_id_and_video_id"
-    t.index ["video_id", "user_id"], name: "index_watching_histories_on_video_id_and_user_id"
+    t.integer "video_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "video_id"], name: "index_watch_histories_on_user_id_and_video_id"
+    t.index ["video_id", "user_id"], name: "index_watch_histories_on_video_id_and_user_id"
   end
 
   add_foreign_key "videos", "series"
