@@ -16,6 +16,12 @@
       </div>
 
       <div class="form-group">
+        <%= f.fields_for :tags do |builder| %>
+          <%= render 'tag_fields', f: builder %>
+        <% end %>
+      </div>
+
+      <div class="form-group">
         <%= f.label :description %><br />
         <%= f.text_area :description, autocomplete: "current-level", class: 'form-control' %>
       </div>

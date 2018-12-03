@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
 end
 
-  scope "/admin" do
+  scope "/admin", module: :admin do
     resources :series do
         resources :videos
     end

@@ -1,4 +1,4 @@
-class AdminController < ApplicationController
+class Admin::AdminController < ApplicationController
 
     def index
         unless current_user && current_user.admin?

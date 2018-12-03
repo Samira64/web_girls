@@ -1,4 +1,4 @@
-class VideosController < ApplicationController
+class Admin::VideosController < ApplicationController
     def index
         @series = Series.find(params[:series_id])
         @videos = @series.videos

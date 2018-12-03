@@ -1,4 +1,4 @@
-class SeriesController < ApplicationController
+class Admin::SeriesController < ApplicationController
     
     def index
         @series = Series.all
