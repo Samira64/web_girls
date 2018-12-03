@@ -4,7 +4,9 @@
         <tr>
             <th>Title</th>
             <th>Description</th>
+            <th>view_count</th>
             <th></th>
+            
         </tr>
     </thead>
     
@@ -14,8 +16,12 @@
                 <td><%= video.title %></td>
                 <td><%= video.description %></td>
                 <td>
+                    <%= video.view_count %>
+                </td> 
+                <td>
                     <%= link_to "View", user_video_url(video), id: "my-link" %>
-                </td>                
+                </td>
+                               
             </tr>
         </tbody>
     <% end %>
