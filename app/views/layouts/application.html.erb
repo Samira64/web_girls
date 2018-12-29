@@ -55,6 +55,7 @@
     <br><br>
     <% if notice %><div class="alert alert-info mt-1"><%= notice %></div><% end %>
     <% if alert %><div class="alert alert-info mt-1"><%= alert %></div><% end %>
+    <% if flash[:error] %><div class="alert alert-danger"><%= flash[:error] %></div><% end %>
     <%= yield %>
   </div>
 </body>

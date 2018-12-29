@@ -1,4 +1,10 @@
 class Admin::VideosController < ApplicationController
+    before_action :set_tags, only: [:create, :new]
+
+    def set_tags
+        @tags = Tag.all.map {|tag| [tag.name, tag.id] }
+    end
+
     def index
         @series = Series.find(params[:series_id])
         @videos = @series.videos
@@ -11,13 +17,32 @@ class Admin::VideosController < ApplicationController
 
     def create
         @series = Series.find(params[:series_id])
-        @video = @series.videos.create(video_params)
-        if @video.save
-            redirect_to series_videos_url(@series), notice: "The video \"#{@video.title}\"  was built successfully."
-        else
-            render "new"
+        @video = @series.videos.new(video_params)
+        selected_tags = params[:video][:tag_ids].reject!(&:blank?)
+        if selected_tags.empty?
+            flash[:error] = "Tag name can not be blank."
+            render "new" and return
         end
-    end
+        # add the existing tag or create the tag for that video.
+        if @video.save
+
+            selected_tags.each do |tag|
+                tag_exists = Tag.exists?(tag)
+                if tag_exists
+                    @video.tags << Tag.find(tag)
+                else
+                    @tag = @video.tags.create(name: tag)
+                end            
+            end
+            
+            notice = "The video \"#{@video.title}\"  was built successfully."
+            redirect_to series_videos_url(@series), notice: notice
+
+
+        else                            
+            render "new" 
+        end
+    end 
 
     def show
         @series = Series.find(params[:series_id])
@@ -54,4 +79,5 @@ class Admin::VideosController < ApplicationController
     def video_params
         params.require(:video).permit(:title, :url, :description)
     end
+
 end
