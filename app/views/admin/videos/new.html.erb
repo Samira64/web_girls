@@ -1,5 +1,4 @@
 <%= render 'partials/errors', model: @video %>
-
 <div class="row">
   <div class="col-md-6 column">
 
@@ -16,9 +15,7 @@
       </div>
 
       <div class="form-group">
-        <%= f.fields_for :tags do |builder| %>
-          <%= render 'tag_fields', f: builder %>
-        <% end %>
+        <%= f.select(:tag_ids, options_for_select(@tags), {:prompt => 'Select Tag or add your own'}, { :multiple => true} ) %>
       </div>
 
       <div class="form-group">
@@ -37,3 +34,23 @@
 
   </div>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#video_tag_ids').selectize({
+      create: true,
+      createOnBlur: true,
+      maxItems: null,
+      delimiter: ',',
+      persist: true,
+      hideSelected: false,
+
+      create: function(input) {
+        return {
+            value: input,
+            text: input
+        }
+      }
+    })
+  });
+</script>
