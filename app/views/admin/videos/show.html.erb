@@ -1,3 +1,13 @@
-    <h1><%= @video.title %><br><br>
+    <h1>Title: <%= @video.title %><br><br>
+        <tbody>
+            <tr>
+                <td>Tagged as:</td>
+                <% tag_names = [] %>
+                <% @video.tags.each do |tag|  %>
+                    <td><% tag_names << tag.name %></td>
+                <% end %>
+                <%= tag_names.to_sentence %>
+        </tbody>
+           
     <iframe width="560" height="315" src="<%= @video.url %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
