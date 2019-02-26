@@ -1,5 +1,5 @@
 class Admin::VideosController < ApplicationController
-    before_action :set_tags, only: [:create, :new]
+    before_action :set_tags, only: [:create, :new, :edit]
 
     def set_tags
         @tags = Tag.all.map {|tag| [tag.name, tag.id] }
