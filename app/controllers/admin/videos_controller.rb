@@ -52,12 +52,27 @@ class Admin::VideosController < ApplicationController
     def edit
         @series = Series.find(params[:series_id])
         @video = @series.videos.find(params[:id])
+        @selected_tags = @video.tags.map {|tag| tag.name }
     end
 
     def update
         @series = Series.find(params[:series_id])
         @video = @series.videos.find(params[:id])
+        selected_tags = params[:video][:tag_ids].reject!(&:blank?)
+
         if @video.update_attributes(video_params)
+
+            selected_tags.each do |tag|
+                tag_exists = Tag.exists?(tag)
+                video_tag_ids = @video.tags.map {|tag| tag.id }
+                video_tag_included = video_tag_ids.include?(tag.to_i)
+
+                if !tag_exists 
+                     @tag = @video.tags.create(name: tag)
+                elsif !video_tag_included
+                  @video.tags << Tag.find(tag)      
+                end            
+            end
             redirect_to series_videos_url(@series), notice: "The video \"#{@video.title}\"  was updated successfully."
         else
             render "edit"
