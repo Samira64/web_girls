@@ -20,7 +20,7 @@ end
     end
   end
 
-  get "admin", to: "admin#index"
+  get "admin", to: "admin/series#index"
 
   scope module: :users do
     get "/series", to: "series#index", as: :user_series_index
